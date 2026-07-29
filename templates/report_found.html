@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-10">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <div class="card-header bg-success text-white text-center py-4">
+
+                    <h2>
+                        <i class="fa-solid fa-circle-check"></i>
+                        Report Found Item
+                    </h2>
+
+                    <p class="mb-0">
+                        Help a fellow REC student recover their lost belongings.
+                    </p>
+
+                </div>
+
+                <div class="card-body p-5">
+
+                    <form method="POST" enctype="multipart/form-data">
+
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+                                    Item Name
+                                </label>
+
+                                {{ form.item_name }}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+                                    Category
+                                </label>
+
+                                {{ form.category }}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+                                    Found Location
+                                </label>
+
+                                {{ form.location }}
+
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+
+                                <label class="form-label fw-bold">
+                                    Date Found
+                                </label>
+
+                                {{ form.date }}
+
+                            </div>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Description
+                            </label>
+
+                            {{ form.description }}
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label class="form-label fw-bold">
+                                Contact Number
+                            </label>
+
+                            {{ form.contact }}
+
+                        </div>
+
+                        <div class="mb-4">
+
+                            <label class="form-label fw-bold">
+                                Upload Image
+                            </label>
+
+                            {{ form.image }}
+
+                        </div>
+
+                        <div class="text-center">
+
+                            <button class="btn btn-success btn-lg px-5">
+
+                                <i class="fa-solid fa-upload"></i>
+
+                                Submit Report
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,424 @@
+/* ================================
+   REC LOST & FOUND PORTAL
+   Professional Theme
+================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#f5f7fb;
+    color:#333;
+    overflow-x:hidden;
+
+}
+
+/* NAVBAR */
+
+.navbar{
+
+    background:#0d47a1;
+    padding:15px 0;
+    transition:.3s;
+
+}
+
+.navbar-brand{
+
+    font-size:24px;
+    font-weight:700;
+
+}
+
+.nav-link{
+
+    color:white !important;
+    margin-left:15px;
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    color:#ffd54f !important;
+
+}
+
+.dropdown-menu{
+
+    border:none;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+/* HERO */
+
+.hero{
+
+    background:linear-gradient(135deg,#1565c0,#42a5f5);
+    color:white;
+    padding:100px 30px;
+    border-radius:25px;
+    margin-top:40px;
+
+}
+
+.hero h1{
+
+    font-size:55px;
+    font-weight:700;
+
+}
+
+.hero p{
+
+    margin-top:20px;
+    font-size:20px;
+
+}
+
+/* BUTTONS */
+
+.btn-main{
+
+    background:#0d47a1;
+    color:white;
+    padding:14px 35px;
+    border-radius:50px;
+    border:none;
+    transition:.3s;
+
+}
+
+.btn-main:hover{
+
+    background:#1565c0;
+    transform:translateY(-3px);
+
+}
+
+.btn-success-custom{
+
+    background:#2e7d32;
+    color:white;
+    border-radius:50px;
+    padding:14px 35px;
+}
+
+.btn-success-custom:hover{
+
+    background:#388e3c;
+    color:white;
+
+}
+
+/* CARDS */
+
+.card{
+
+    border:none;
+    border-radius:20px;
+    overflow:hidden;
+    transition:.3s;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.card-title{
+
+    font-weight:700;
+
+}
+
+/* DASHBOARD CARDS */
+
+.stat-card{
+
+    border-radius:20px;
+    color:white;
+    padding:30px;
+    text-align:center;
+    transition:.3s;
+
+}
+
+.stat-card:hover{
+
+    transform:scale(1.04);
+
+}
+
+.bg-blue{
+
+    background:#1976d2;
+
+}
+
+.bg-green{
+
+    background:#43a047;
+
+}
+
+.bg-orange{
+
+    background:#fb8c00;
+
+}
+
+.bg-red{
+
+    background:#e53935;
+
+}
+
+/* FORM */
+
+.form-box{
+
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,.08);
+
+}
+
+.form-control{
+
+    border-radius:12px;
+    padding:14px;
+
+}
+
+.form-select{
+
+    border-radius:12px;
+    padding:14px;
+
+}
+
+textarea{
+
+    resize:none;
+
+}
+
+/* IMAGE */
+
+.item-image{
+
+    width:100%;
+    height:230px;
+    object-fit:cover;
+
+}
+
+/* SEARCH */
+
+.search-box{
+
+    border-radius:50px;
+    padding:15px;
+    border:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+}
+
+/* FOOTER */
+
+.footer{
+
+    background:#0d47a1;
+    color:white;
+    margin-top:80px;
+    padding:50px 0;
+
+}
+
+.footer a{
+
+    color:white;
+    text-decoration:none;
+
+}
+
+.footer a:hover{
+
+    color:#ffd54f;
+
+}
+
+/* LOGIN */
+
+.login-box{
+
+    width:450px;
+    background:white;
+    margin:100px auto;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.login-box h2{
+
+    text-align:center;
+    margin-bottom:30px;
+
+}
+
+/* OTP */
+
+.otp-box{
+
+    width:450px;
+    margin:100px auto;
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    box-shadow:0 15px 30px rgba(0,0,0,.15);
+
+}
+
+.otp-input{
+
+    width:60px;
+    height:60px;
+    text-align:center;
+    font-size:25px;
+    border-radius:12px;
+    margin:5px;
+
+}
+
+/* PROFILE */
+
+.profile-card{
+
+    background:white;
+    border-radius:20px;
+    padding:40px;
+    text-align:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.profile-img{
+
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #1976d2;
+
+}
+
+/* TABLE */
+
+table{
+
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+
+}
+
+thead{
+
+    background:#1976d2;
+    color:white;
+
+}
+
+/* BADGES */
+
+.badge-lost{
+
+    background:#d32f2f;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+
+}
+
+.badge-found{
+
+    background:#388e3c;
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+
+}
+
+/* ANIMATION */
+
+.fade-up{
+
+    animation:fadeUp .8s;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+transform:translateY(40px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.hero{
+
+text-align:center;
+
+}
+
+.hero h1{
+
+font-size:34px;
+
+}
+
+.login-box,
+.otp-box{
+
+width:95%;
+
+}
+
+.nav-link{
+
+margin-left:0;
+
+}
+
+}

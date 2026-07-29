@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-danger">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            Lost Items
+        </h1>
+
+        <p class="text-muted">
+            Browse all reported lost items at REC.
+        </p>
+    </div>
+
+    <!-- Search Form -->
+
+    <form method="GET" action="{% url 'lost_items' %}" class="mb-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8">
+
+            <div class="input-group">
+
+                <input
+                    type="text"
+                    name="q"
+                    value="{{ query }}"
+                    class="form-control"
+                    placeholder="Search by item name, category, location">
+
+                <button type="submit" class="btn btn-danger">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+    <div class="row">
+
+        {% for item in items %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card h-100 shadow">
+
+                {% if item.image %}
+
+                    <img src="{{ item.image.url }}" class="item-image">
+
+                {% else %}
+
+                    <img src="{% static 'images/no-image.png' %}" class="item-image">
+
+                {% endif %}
+
+                <div class="card-body">
+
+                    <h4>{{ item.item_name }}</h4>
+
+                    <span class="badge bg-danger">Lost</span>
+
+                    <hr>
+
+                    <p>
+                        <i class="fa-solid fa-layer-group text-primary"></i>
+                        <strong>Category:</strong> {{ item.category }}
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-location-dot text-danger"></i>
+                        <strong>Location:</strong> {{ item.location }}
+                    </p>
+
+                    <p>
+                        <i class="fa-solid fa-calendar-days text-success"></i>
+                        <strong>Date:</strong> {{ item.date }}
+                    </p>
+
+                    <p>{{ item.description|truncatewords:20 }}</p>
+
+                </div>
+
+                <div class="card-footer bg-white">
+
+                    <div class="d-grid">
+
+                        <a href="tel:{{ item.contact }}" class="btn btn-danger">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            Contact Owner
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="text-center">
+
+            <img src="{% static 'images/no-image.png' %}" width="180">
+
+            <h3 class="mt-3">No matching lost items found.</h3>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

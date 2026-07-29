@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Register | REC Lost & Found</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:linear-gradient(135deg,#198754,#20c997);
+}
+
+.card{
+    margin-top:40px;
+    margin-bottom:40px;
+    border:none;
+    border-radius:20px;
+}
+
+.left-panel{
+
+background:#198754;
+
+color:white;
+
+padding:50px;
+
+border-radius:20px 0 0 20px;
+
+}
+
+.right-panel{
+
+padding:40px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-lg-10">
+
+<div class="card shadow-lg">
+
+<div class="row g-0">
+
+<div class="col-md-6 left-panel">
+
+<h1>🎒 REC Lost & Found</h1>
+
+<hr>
+
+<h3>Create Your Account</h3>
+
+<p>
+
+Register using your student details and start helping students recover their lost belongings.
+
+</p>
+
+</div>
+
+<div class="col-md-6 right-panel">
+
+<h2 class="mb-4">
+
+Student Registration
+
+</h2>
+{% if form.errors %}
+<div style="background:#ffe6e6;color:#b00020;padding:10px;border-radius:8px;margin-bottom:15px;">
+    {{ form.errors }}
+</div>
+{% endif %}
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="mb-3">
+
+<label>Username</label>
+
+{{ form.username }}
+
+</div>
+
+<div class="mb-3">
+
+<label>Email</label>
+
+{{ form.email }}
+
+</div>
+
+<div class="mb-3">
+
+<label>Password</label>
+
+{{ form.password1 }}
+
+</div>
+
+<div class="mb-3">
+
+<label>Confirm Password</label>
+
+{{ form.password2 }}
+
+</div>
+
+<button class="btn btn-success w-100">
+
+Register
+
+</button>
+
+</form>
+
+<hr>
+
+<p class="text-center">
+
+Already have an account?
+
+<a href="{% url 'login' %}">
+
+Login Here
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+
+<div class="card shadow p-5">
+
+<h1>Student Dashboard</h1>
+
+<hr>
+
+<h4>Welcome {{ request.user.username }}</h4>
+
+<p>Email : {{ request.user.email }}</p>
+
+<p>This is your dashboard.</p>
+
+</div>
+
+</div>
+
+{% endblock %}

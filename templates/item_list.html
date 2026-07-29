@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lost & Found Items</title>
+</head>
+<body>
+
+<h1>Lost & Found Items</h1>
+
+{% for item in items %}
+
+<hr>
+
+<h2>{{ item.item_name }}</h2>
+
+<p><strong>Category:</strong> {{ item.category }}</p>
+
+<p><strong>Status:</strong> {{ item.status }}</p>
+
+<p><strong>Location:</strong> {{ item.location }}</p>
+
+<p><strong>Date:</strong> {{ item.date }}</p>
+
+<p><strong>Description:</strong> {{ item.description }}</p>
+
+<p><strong>Contact:</strong> {{ item.contact }}</p>
+
+{% if item.image %}
+    <img src="{{ item.image.url }}" width="200">
+{% endif %}
+
+{% empty %}
+
+<h3>No items have been posted yet.</h3>
+
+{% endfor %}
+
+</body>
+</html>

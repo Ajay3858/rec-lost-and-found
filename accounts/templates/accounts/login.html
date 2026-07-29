@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Login | REC Lost & Found</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:linear-gradient(135deg,#0d6efd,#00b4d8);
+    height:100vh;
+}
+
+.card{
+    border:none;
+    border-radius:20px;
+}
+
+.left-panel{
+    background:#0d6efd;
+    color:white;
+    border-radius:20px 0 0 20px;
+    padding:50px;
+}
+
+.right-panel{
+    padding:50px;
+}
+
+.btn-login{
+    width:100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container h-100">
+
+<div class="row justify-content-center align-items-center h-100">
+
+<div class="col-lg-10">
+
+<div class="card shadow-lg">
+
+<div class="row g-0">
+
+<div class="col-md-6 left-panel">
+
+<h1>🎒 REC Lost & Found</h1>
+
+<hr>
+
+<h3>Welcome Back</h3>
+
+<p>
+
+Login to report lost items,
+view found items,
+and help your fellow students.
+
+</p>
+
+</div>
+
+<div class="col-md-6 right-panel">
+
+<h2 class="mb-4">
+
+Student Login
+
+</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="mb-3">
+
+<label class="form-label">
+
+Username
+
+</label>
+
+<input
+type="text"
+name="username"
+class="form-control"
+required>
+
+</div>
+
+<div class="mb-4">
+
+<label class="form-label">
+
+Password
+
+</label>
+
+<input
+type="password"
+name="password"
+class="form-control"
+required>
+
+</div>
+
+<button class="btn btn-primary btn-login">
+
+Login
+
+</button>
+
+</form>
+
+<hr>
+
+<p class="text-center">
+
+New Student?
+
+<a href="{% url 'register' %}">
+
+Register Here
+
+</a>
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
