@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import RegisterForm
+from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.http import HttpResponse
+
+from .forms import RegisterForm
 from .otp import generate_otp
 
-from django.http import HttpResponse
 
 def register(request):
 
@@ -20,6 +21,7 @@ def register(request):
             return HttpResponse(f"<h2>Form Errors</h2><pre>{form.errors}</pre>")
 
         try:
+
             otp = generate_otp()
 
             request.session["otp"] = otp
@@ -30,24 +32,37 @@ def register(request):
                 "password": form.cleaned_data["password1"],
             }
 
-           # send_mail(
-            #    subject="REC Lost & Found OTP Verification",
-             #   message=f"Your OTP is {otp}",
-              #  from_email=settings.EMAIL_HOST_USER,
-               # recipient_list=[form.cleaned_data["email"]],
-                #fail_silently=False,
-            #)
-            print(settings.EMAIL_HOST_USER)
-            print(settings.EMAIL_HOST_PASSWORD)    
-            return HttpResponse("OK") 
-            #return redirect("verify_otp")
+            try:
+
+                send_mail(
+                    subject="REC Lost & Found OTP Verification",
+                    message=f"Your OTP is {otp}",
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=[form.cleaned_data["email"]],
+                    fail_silently=False,
+                )
+
+            except Exception as e:
+
+                return HttpResponse(
+                    f"<h2>Email Error</h2><pre>{type(e).__name__}: {e}</pre>"
+                )
+
+            return redirect("verify_otp")
 
         except Exception as e:
-            return HttpResponse(f"<h2>Email Error</h2><pre>{e}</pre>")
 
-    form = RegisterForm()
+            return HttpResponse(
+                f"<h2>Registration Error</h2><pre>{type(e).__name__}: {e}</pre>"
+            )
+
+    else:
+
+        form = RegisterForm()
 
     return render(request, "accounts/register.html", {"form": form})
+
+
 def login_view(request):
 
     if request.method == "POST":
@@ -70,6 +85,8 @@ def login_view(request):
 
                 return redirect("home")
 
+        messages.error(request, "Invalid username or password.")
+
     else:
 
         form = AuthenticationForm()
@@ -82,12 +99,13 @@ def logout_view(request):
     logout(request)
 
     return redirect("login")
+
+
 def verify_otp(request):
 
     if request.method == "POST":
 
         entered_otp = request.POST.get("otp")
-
         saved_otp = request.session.get("otp")
 
         if entered_otp == saved_otp:
@@ -105,7 +123,10 @@ def verify_otp(request):
             request.session.pop("otp", None)
             request.session.pop("registration_data", None)
 
-            messages.success(request, "Account created successfully!")
+            messages.success(
+                request,
+                "Account created successfully!"
+            )
 
             return redirect("home")
 
