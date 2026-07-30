@@ -35,12 +35,12 @@ def register(request):
             try:
 
                 send_mail(
-                    subject="REC Lost & Found OTP Verification",
-                    message=f"Your OTP is {otp}",
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[form.cleaned_data["email"]],
-                    fail_silently=False,
-                )
+                subject="REC Lost & Found OTP Verification",
+                message=f"Your OTP is {otp}",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[form.cleaned_data["email"]],
+                fail_silently=False,
+            )
 
             except Exception as e:
 
