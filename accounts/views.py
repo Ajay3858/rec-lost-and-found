@@ -11,13 +11,15 @@ from .otp import generate_otp
 from django.http import HttpResponse
 
 def register(request):
+
     if request.method == "POST":
+
+        form = RegisterForm(request.POST)
+
+        if not form.is_valid():
+            return HttpResponse(f"<h2>Form Errors</h2><pre>{form.errors}</pre>")
+
         try:
-            form = RegisterForm(request.POST)
-
-            if not form.is_valid():
-                return HttpResponse(f"<h2>Form Errors</h2><pre>{form.errors}</pre>")
-
             otp = generate_otp()
 
             request.session["otp"] = otp
@@ -28,21 +30,21 @@ def register(request):
                 "password": form.cleaned_data["password1"],
             }
 
-           # send_mail(
-                #subject="REC Lost & Found OTP",
-                #message=f"Your OTP is {otp}",
-               # from_email=settings.EMAIL_HOST_USER,
-              #  recipient_list=[form.cleaned_data["email"]],
-             #   fail_silently=False,
-            #)
-            
-            return HttpResponse("Registration reached OTP step successfully.")
-            #return redirect("verify_otp")
+            send_mail(
+                subject="REC Lost & Found OTP Verification",
+                message=f"Your OTP is {otp}",
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[form.cleaned_data["email"]],
+                fail_silently=False,
+            )
+
+            return redirect("verify_otp")
 
         except Exception as e:
-            return HttpResponse(f"<h1>ERROR</h1><pre>{e}</pre>")
+            return HttpResponse(f"<h2>Email Error</h2><pre>{e}</pre>")
 
     form = RegisterForm()
+
     return render(request, "accounts/register.html", {"form": form})
 def login_view(request):
 
