@@ -28,15 +28,16 @@ def register(request):
                 "password": form.cleaned_data["password1"],
             }
 
-            send_mail(
-                subject="REC Lost & Found OTP",
-                message=f"Your OTP is {otp}",
-                from_email=settings.EMAIL_HOST_USER,
-                recipient_list=[form.cleaned_data["email"]],
-                fail_silently=False,
-            )
-
-            return redirect("verify_otp")
+           # send_mail(
+                #subject="REC Lost & Found OTP",
+                #message=f"Your OTP is {otp}",
+               # from_email=settings.EMAIL_HOST_USER,
+              #  recipient_list=[form.cleaned_data["email"]],
+             #   fail_silently=False,
+            #)
+            
+            return HttpResponse("Registration reached OTP step successfully.")
+            #return redirect("verify_otp")
 
         except Exception as e:
             return HttpResponse(f"<h1>ERROR</h1><pre>{e}</pre>")
