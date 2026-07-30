@@ -8,19 +8,17 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .otp import generate_otp
 
+from django.http import HttpResponse
+
 def register(request):
-
     if request.method == "POST":
+        try:
+            form = RegisterForm(request.POST)
 
-        print("POST received")
-
-        form = RegisterForm(request.POST)
-
-        if form.is_valid():
-            print("Form is valid")
+            if not form.is_valid():
+                return HttpResponse(f"<h2>Form Errors</h2><pre>{form.errors}</pre>")
 
             otp = generate_otp()
-            print("OTP:", otp)
 
             request.session["otp"] = otp
 
@@ -31,7 +29,7 @@ def register(request):
             }
 
             send_mail(
-                subject="REC Lost & Found OTP Verification",
+                subject="REC Lost & Found OTP",
                 message=f"Your OTP is {otp}",
                 from_email=settings.EMAIL_HOST_USER,
                 recipient_list=[form.cleaned_data["email"]],
@@ -40,12 +38,10 @@ def register(request):
 
             return redirect("verify_otp")
 
-        else:
-            print(form.errors)
+        except Exception as e:
+            return HttpResponse(f"<h1>ERROR</h1><pre>{e}</pre>")
 
-    else:
-        form = RegisterForm()
-
+    form = RegisterForm()
     return render(request, "accounts/register.html", {"form": form})
 def login_view(request):
 
